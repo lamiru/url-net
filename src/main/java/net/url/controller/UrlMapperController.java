@@ -62,6 +62,12 @@ public class UrlMapperController {
 		return "list";
 	}
 
+	@GetMapping("/m/hit")
+	public String hit(Model model) {
+		model.addAttribute("hit", hitRepository.findAllByOrderByTimestampDesc());
+		return "hit";
+	}
+	
 	@GetMapping("/{shortenedUrl}")
     public RedirectView redirectUrl(@PathVariable String shortenedUrl) {
 		UrlMapper url_mapper = urlMapperRepository.findByShortenedUrl(shortenedUrl);
@@ -78,7 +84,7 @@ public class UrlMapperController {
         Date date= new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         
-        Hit hit = new Hit(timestamp, userIp);
+        Hit hit = new Hit(timestamp, userIp, shortenedUrl);
         hitRepository.save(hit);
         
         return redirectView;

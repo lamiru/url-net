@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="hit")
 public class Hit {
+	public Hit() {}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -21,6 +22,9 @@ public class Hit {
 	
 	@Column(name="user_ip")
 	private String userIp;
+
+	@Column(name="shortened_url")
+	private String shortenedUrl;
 
 	public Long getId() {
 		return id;
@@ -46,10 +50,18 @@ public class Hit {
 		this.userIp = userIp;
 	}
 
-	public Hit(Timestamp timestamp, String userIp) {
+	public String getShortenedUrl() {
+		return shortenedUrl;
+	}
+
+	public void setShortenedUrl(String shortenedUrl) {
+		this.shortenedUrl = shortenedUrl;
+	}
+
+	public Hit(Timestamp timestamp, String userIp, String shortenedUrl) {
 		super();
 		this.timestamp = timestamp;
 		this.userIp = userIp;
+		this.shortenedUrl = shortenedUrl;
 	}
-
 }
