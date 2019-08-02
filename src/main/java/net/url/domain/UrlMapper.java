@@ -19,7 +19,7 @@ public class UrlMapper {
 	
 	@Column(name="shortened_url")
 	private String shortenedUrl;
-
+	
 	public Long getId() {
 		return id;
 	}
