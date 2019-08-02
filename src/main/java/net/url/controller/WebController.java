@@ -21,7 +21,7 @@ import net.url.repository.HitRepository;
 import net.url.repository.UrlMapperRepository;
 
 @Controller
-public class UrlMapperController {
+public class WebController {
 	
 	@Autowired
 	private UrlMapperRepository urlMapperRepository;
@@ -45,6 +45,11 @@ public class UrlMapperController {
 	    }
 	  
 	    return shortenedUrl.toString();
+	}
+
+	@GetMapping("/")
+	public String index() {
+		return "index";
 	}
 	
 	@PostMapping("/m/create")
